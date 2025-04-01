@@ -41,7 +41,7 @@ def registrazione_utente(userList):
 
     
 #login utente
-def login_utente(userList):
+def login_utente(userList, id):
     while True:
         # Inserimento del nome utente
         userName = input("Inserisci il tuo nome utente: ")
@@ -52,9 +52,10 @@ def login_utente(userList):
           for s in userList:
             if s[0] == userName and s[1] == userPassword:
               print("Accesoo riuscito")
-              return userList.index(s)
+              id = userList.index(s)
+              return True
             else:
-              pass
+              return False
         
         
         
