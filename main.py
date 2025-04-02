@@ -5,6 +5,7 @@
 
 #import 
 import re
+import sys
 
 #registrazione utente
 def register_user(userList):
@@ -60,20 +61,39 @@ def login_user(userList):
               print("Accesso non riuscito riprova...")
 
 #creiamo la gestione della creazione dei concerti
-def add_event(eventList):
+def add_event(concerti):
     pass
 
+#def prenotazione evento
+def prenotazione_evento(concerti):
+    print("--- Concerti disponibili ---")
+    n = 1
+    for sottoLista in concerti:
+        for user in sottoLista:
+            print(f"{n}) Nome = {user} Posti = {user}")
+            n += 1
 #creiamo una funzione per il menu
 def menu():
+    #stampa del menu con presa input
     ch = int(input("--- Menu --- \n 1) Crea evento \n 2) Prenota evento \n 3) Logout"))
-    match ch:
-        case 1:
-            pass
+    #while per ciclare fintato che l utente vuole fare qualcosa
+    while True:
+        match ch:
+            case 1:
+                pass
+            case 2: 
+                pass
+            case 3:
+                print("Exit programm")
+                sys.exit()
+            case _:
+                print('Caso non valido...')
+        if input("Vuoi continuare? (s/n) ---> ").lower().strip() == "n":
+            break
 
 #dichiarazioni var
 userList = [["Cyrus","Pippo123!"]]
 concerti = [[1 , "nome concerto", 10]]
-eventList = []
 #funzione main per far partire tutto
 def main():
     #simuliamo un session token che sara la posizione della lista nella lista
@@ -92,9 +112,10 @@ def main():
     #controllo se l id di sessione e valido
     match sessionId > -1:
         case True:
-            pass
+            menu()
         case False:
             print('Problemi con l accesso')
 
 #avviamo il programma chiamando il main
-main()
+#main()
+prenotazione_evento(concerti)
