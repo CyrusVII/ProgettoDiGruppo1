@@ -1,13 +1,16 @@
 #creiamo la registrazione utente ogni utente deve prima registrarsi con nome e password
 #poi deve fare un login e per aggiungere concerti deve inserire una passowrd
+#creazioni concerti per utente con inserimento pass "GHIBLI" massimo tre concerti "idUser nomeConcerto posti"
+#possibilita per un utente di prenotare un concerto
 
 #import 
 import re
 
-def registrazione_utente(userList):
+#registrazione utente
+def register_user(userList):
     # Regex per validazione password
     regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[?!])[A-Za-z\d?!]{8,}$"
-
+    print("--- Benvenuto registriamoci ---")
     while True:
         # Inseriamo il nome utente
         userName = input("Inserisci un nome utente: ")
@@ -39,9 +42,9 @@ def registrazione_utente(userList):
     userList.append([[userName, password]])
     print("Registrazione completata con successo!")
 
-    
 #login utente
-def login_utente(userList, id):
+def login_user(userList):
+    print("--- Benvenuto entra nel tuo account ---")
     while True:
         # Inserimento del nome utente
         userName = input("Inserisci il tuo nome utente: ")
@@ -52,12 +55,37 @@ def login_utente(userList, id):
           for s in userList:
             if s[0] == userName and s[1] == userPassword:
               print("Accesoo riuscito")
-              id = userList.index(s)
-              return True
+              return userList.index(s)
             else:
-              return False
-        
+              print("Accesso non riuscito riprova...")
 
-user = [['pippo','pluto'], ['vale','sandro']]
-concerti = [[0,'nome concerto', 10]]
-login_utente(user)
+#creiamo la gestione della creazione dei concerti
+def add_event(eventList):
+    pass
+
+
+#dichiarazioni var
+userList = [["Cyrus","Pippo123!"]]
+concerti = [[1 , "nome concerto", 10]]
+eventList = []
+#funzione main per far partire tutto
+def main():
+    #simuliamo un session token che sara la posizione della lista nella lista
+    sessionId = -1
+    #chiediamo se ha un account
+    haveAccount = True if input("Hai un account? (s/n) ---> ").lower().strip() == "s" else False
+    match haveAccount:
+        case True:
+            sessionId = login_user(userList)
+        case False:
+            register_user(userList)
+            sessionId = login_user(userList)
+            
+    match sessionId > 1:
+      case True:
+        pass
+      case False:
+        pass
+
+#avviamo il programma chiamando il main
+main()
