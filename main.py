@@ -81,7 +81,7 @@ def main():
             register_user(userList)
             sessionId = login_user(userList)
             
-    match sessionId > 1:
+    match sessionId > -1:
       case True:
         pass
       case False:
