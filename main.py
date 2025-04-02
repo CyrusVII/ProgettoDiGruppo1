@@ -63,6 +63,12 @@ def login_user(userList):
 def add_event(eventList):
     pass
 
+#creiamo una funzione per il menu
+def menu():
+    ch = int(input("--- Menu --- \n 1) Crea evento \n 2) Prenota evento \n 3) Logout"))
+    match ch:
+        case 1:
+            pass
 
 #dichiarazioni var
 userList = [["Cyrus","Pippo123!"]]
@@ -72,20 +78,23 @@ eventList = []
 def main():
     #simuliamo un session token che sara la posizione della lista nella lista
     sessionId = -1
+    
     #chiediamo se ha un account
-    haveAccount = True if input("Hai un account? (s/n) ---> ").lower().strip() == "s" else False
-    match haveAccount:
-        case True:
-            sessionId = login_user(userList)
-        case False:
-            register_user(userList)
-            sessionId = login_user(userList)
-            
+    while sessionId < 0:
+        haveAccount = True if input("Hai un account? (s/n) ---> ").lower().strip() == "s" else False
+        match haveAccount:
+            case True:
+                sessionId = login_user(userList)
+            case False:
+                register_user(userList)
+                sessionId = login_user(userList)
+    
+    #controllo se l id di sessione e valido
     match sessionId > -1:
-      case True:
-        pass
-      case False:
-        pass
+        case True:
+            pass
+        case False:
+            print('Problemi con l accesso')
 
 #avviamo il programma chiamando il main
 main()
