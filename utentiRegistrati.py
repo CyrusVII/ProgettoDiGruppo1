@@ -60,5 +60,5 @@ def login_utente(userList, id):
         
         
 user = [['pippo','pluto'], ['vale','sandro']]
-concerti = [['nome concerto', 10]]
+concerti = [[0,'nome concerto', 10]]
 login_utente(user)
